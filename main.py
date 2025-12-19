@@ -35,26 +35,26 @@ class NumberInput(BaseModel):
 # --- FASTAPI APP ---
 app = FastAPI()
 
-# def get_db():
-#     db = SessionLocal()
-#     try:
-#         yield db
-#     finally:
-#         db.close()
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 # --- API ENDPOINTS ---
 
 @app.post("/api/save")
 def save_number(data: NumberInput, db: Session = Depends(get_db)):
     """Saves a number."""
-    try:
+    if data.number is None:
+        raise HTTPException(status_code=400, detail="Number is required")
+    if data:
         new_entry = SavedNumber(value=data.number)
         db.add(new_entry)
         db.commit()
-        db.refresh(new_entry)
+       #db.refresh(new_entry)
         return {"message": "Success", "id": new_entry.id, "value": new_entry.value}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/numbers")
 def get_numbers(db: Session = Depends(get_db)):
