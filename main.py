@@ -35,12 +35,12 @@ class NumberInput(BaseModel):
 # --- FASTAPI APP ---
 app = FastAPI()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# def get_db():
+#     db = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 # --- API ENDPOINTS ---
 
