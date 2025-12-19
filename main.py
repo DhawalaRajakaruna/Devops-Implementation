@@ -67,9 +67,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 def read_root():
     print(".....................Hello This is to detect confilicts in merging .............")
+    print("This is my second line to see conflicts in merging")
     return FileResponse('static/index.html')
 
 
 
-    
+
 # --
