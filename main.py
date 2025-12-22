@@ -77,4 +77,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def read_root():
     print(".....................Hello This is to detect confilicts in merging .............")
     print(".....................Hello This is to detect confilicts in merging .............")
+HEAD
     return FileResponse('static/index.html')
+
+    return FileResponse('static/index.html')
+origin/main
