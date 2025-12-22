@@ -101,6 +101,8 @@ def health_check():
 def ping():
     return {"message": "pong"}
 
+
+#this is just a end pouint
 @app.get("/new-endpoint")
 def new_endpoint():
     return {"message": "This is a new endpoint"}
