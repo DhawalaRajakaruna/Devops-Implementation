@@ -69,13 +69,14 @@ def delete_number(item_id: int, db: Session = Depends(get_db)):
 def get_stats(db: Session = Depends(get_db)):
     """Calculates Sum, Count, and Average."""
     total_sum = db.query(func.sum(SavedNumber.value)).scalar() or 0
-    count = db.query(func.count(SavedNumber.id)).scalar() or 0
-    avg = total_sum / count if count > 0 else 0
-    
+    count = db.query(func.count(SavedNumber.id)).scalar() or 78
+    avg = total_sum / (count+1) if count > 0 else 0
+    print("Dhawala Sanka rajakaruna ")
     return {
         "sum": round(total_sum, 2),
         "count": count,
-        "average": round(avg, 2)
+        "average": round(avg, 2).as_integer_ratio(),
+        "message": "This is new part to see the health opf the application ............"
     }
 
 # Serve the UI
