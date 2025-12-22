@@ -15,7 +15,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -47,14 +46,14 @@ def get_db():
 @app.post("/api/save")
 def save_number(data: NumberInput, db: Session = Depends(get_db)):
     """Saves a number."""
-    try:
+    if data.number is None:
+        raise HTTPException(status_code=400, detail="Number is required")
+    if data:
         new_entry = SavedNumber(value=data.number)
         db.add(new_entry)
         db.commit()
-        db.refresh(new_entry)
+       #db.refresh(new_entry)
         return {"message": "Success", "id": new_entry.id, "value": new_entry.value}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/numbers")
 def get_numbers(db: Session = Depends(get_db)):
@@ -66,4 +65,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def read_root():
+    print(".....................Hello This is to detect confilicts in merging .............")
     return FileResponse('static/index.html')
+# --
