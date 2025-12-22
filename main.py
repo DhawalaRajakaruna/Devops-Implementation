@@ -86,3 +86,6 @@ def read_root():
     return FileResponse('static/index.html')
 
 
+@app.get("/templates/index")
+def read_index():
+    print("Just to get a template index Html file ..................")
