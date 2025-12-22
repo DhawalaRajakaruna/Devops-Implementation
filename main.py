@@ -86,5 +86,22 @@ def read_root():
 
 
 @app.get("/templates/index")
-def read_index():
-    print("Just to get a template index Html file ..................")
+def read_index(x:int=0):
+    if(x == 1):
+        return FileResponse('templates/index.html')
+    print("updated the temoplates index file ............")
+
+@app.get("/health")
+def health_check():
+    print("This is new part to see the health opf the application ............")
+    return {"status": "ok"}
+
+@app.get("/ping")
+def ping():
+    return {"message": "pong"}
+
+
+#this is just a end pouint
+@app.get("/new-endpoint")
+def new_endpoint():
+    return {"message": "This is a new endpoint"}
