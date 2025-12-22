@@ -14,8 +14,6 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-
-
 # --- DATABASE MODEL ---
 class SavedNumber(Base):
     __tablename__ = "saved_numbers"
@@ -67,6 +65,5 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 def read_root():
     print(".....................Hello This is to detect confilicts in merging .............")
-
     return FileResponse('static/index.html')
 
