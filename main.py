@@ -6,16 +6,9 @@ from sqlalchemy import create_engine, Column, Integer, Float, desc
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
-import os
 
-# --- DATABASE CONFIGURATION ---
+
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:airarabia@localhost/number_db")
-
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
-
-
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -57,6 +50,8 @@ def save_number(data: NumberInput, db: Session = Depends(get_db)):
         db.commit()
        #db.refresh(new_entry)
        #db.refresh(new_entry)
+       #db.refresh(new_entry)
+       #db.refresh(new_entry)
         return {"message": "Success", "id": new_entry.id, "value": new_entry.value}
 
 @app.get("/api/numbers")
@@ -70,7 +65,5 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/")
 def read_root():
     print(".....................Hello This is to detect confilicts in merging .............")
-    print(".....................Hello This is to detect confilicts in merging .............")
-
     return FileResponse('static/index.html')
 
