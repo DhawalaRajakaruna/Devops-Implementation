@@ -1,3 +1,7 @@
+
+# --
+
+
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -5,6 +9,7 @@ from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, Float, desc
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
+import os
 import os
 
 # --- DATABASE CONFIGURATION ---
@@ -50,6 +55,9 @@ def save_number(data: NumberInput, db: Session = Depends(get_db)):
     if data.number is None:
         raise HTTPException(status_code=400, detail="Number is required")
     if data:
+    if data.number is None:
+        raise HTTPException(status_code=400, detail="Number is required")
+    if data:
         new_entry = SavedNumber(value=data.number)
         db.add(new_entry)
         db.commit()
@@ -67,5 +75,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def read_root():
+    print(".....................Hello This is to detect confilicts in merging .............")
     print(".....................Hello This is to detect confilicts in merging .............")
     return FileResponse('static/index.html')
