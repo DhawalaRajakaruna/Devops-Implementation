@@ -85,6 +85,7 @@ def read_root():
     return FileResponse('static/index.html')
 
 
+
 @app.get("/templates/index")
 def read_index(x:int=0):
     if(x == 1):
