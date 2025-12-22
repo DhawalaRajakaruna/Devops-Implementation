@@ -1,3 +1,7 @@
+
+# --
+
+
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -6,9 +10,16 @@ from sqlalchemy import create_engine, Column, Integer, Float, desc
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
+import os
 
 # --- DATABASE CONFIGURATION ---
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:12345678@localhost/number_db"
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:airarabia@localhost/number_db")
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -44,10 +55,14 @@ def save_number(data: NumberInput, db: Session = Depends(get_db)):
     if data.number is None:
         raise HTTPException(status_code=400, detail="Number is required")
     if data:
+    if data.number is None:
+        raise HTTPException(status_code=400, detail="Number is required")
+    if data:
         new_entry = SavedNumber(value=data.number)
         db.add(new_entry)
         db.commit()
-        db.refresh(new_entry)
+       #db.refresh(new_entry)
+       #db.refresh(new_entry)
         return {"message": "Success", "id": new_entry.id, "value": new_entry.value}
 
 @app.get("/api/numbers")
@@ -60,4 +75,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def read_root():
+    print(".....................Hello This is to detect confilicts in merging .............")
+    print(".....................Hello This is to detect confilicts in merging .............")
     return FileResponse('static/index.html')
