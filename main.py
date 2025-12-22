@@ -1,7 +1,3 @@
-
-# --
-
-
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -52,9 +48,7 @@ def get_db():
 @app.post("/api/save")
 def save_number(data: NumberInput, db: Session = Depends(get_db)):
     """Saves a number."""
-    if data.number is None:
-        raise HTTPException(status_code=400, detail="Number is required")
-    if data:
+
     if data.number is None:
         raise HTTPException(status_code=400, detail="Number is required")
     if data:
@@ -77,8 +71,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def read_root():
     print(".....................Hello This is to detect confilicts in merging .............")
     print(".....................Hello This is to detect confilicts in merging .............")
-HEAD
-    return FileResponse('static/index.html')
 
     return FileResponse('static/index.html')
-origin/main
+
