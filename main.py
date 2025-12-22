@@ -70,12 +70,11 @@ def get_stats(db: Session = Depends(get_db)):
     """Calculates Sum, Count, and Average."""
     total_sum = db.query(func.sum(SavedNumber.value)).scalar() or 0
     count = db.query(func.count(SavedNumber.id)).scalar() or 0
-    avg = total_sum / count if count > 0 else 0
+
     
     return {
-        "sum": round(total_sum, 2),
-        "count": count,
-        "average": round(avg, 2)
+        "total_sum": round(total_sum, 2),
+        "count": count
     }
 
 # Serve the UI
