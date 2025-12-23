@@ -107,4 +107,10 @@ def ping():
 
 @app.get("/new-endpoint")
 def new_endpoint():
+    print("Hello World from the new endpoint!")
     return {"message": "This is a new endpoint"}
+
+@app.get("/another-endpoint")
+def another_endpoint():
+    print("Another endpoint reached!")
+    return {"message": "You have reached another endpoint"}
