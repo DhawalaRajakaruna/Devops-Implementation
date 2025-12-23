@@ -111,7 +111,7 @@ def health_check():
 def ping():
     return {"message": "Hehe Ping pong"}
 
-@app.get("/new-endpoint")
+@app.get("/new")
 def new_endpoint():
     print("In the new end pooint")
     print("Hello World from the new endpoint!")
@@ -120,7 +120,7 @@ def new_endpoint():
 
 @app.get("/new-feature")
 def new_feature():
-    return {"feature": "This is a new feature added to the application"}
+    return {"fe": "Tlogin made changes"}
 
 @app.get("/another-endpoint")
 def another_endpoint():
@@ -132,3 +132,6 @@ def another_endpoint():
 def dhawala_function():
     print("Dhawala Sanka rajakaruna ")
     return {"message": "Dhawala Sanka rajakaruna "}
+@app.get("/Login")
+def login():
+    return {"message": "Login endpoint"}
