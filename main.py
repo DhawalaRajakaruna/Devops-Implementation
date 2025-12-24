@@ -162,3 +162,9 @@ def save_number(data: NumberInput, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_entry) 
     return new_entry
+
+# Start to check rebasing to learn
+@app.get("/rebase-check")
+def rebase_check():
+    print("Checking rebase functionality")
+    return {"message": "Rebase check successful"}
