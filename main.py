@@ -195,6 +195,10 @@ def conflict_check():
     print("This endpoint is to create a merge conflict")
     return {"message": "Conflict check endpoint"}
 
+@app.get("/feature-for-practice")
+def feature_for_practice():
+    print("Feature for practice endpoint")
+    return {"message": "This is a feature for practice"}    
 @app.get("/feature-check")
 def feature_check():
     print("This endpoint is to check feature branch")
