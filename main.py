@@ -209,3 +209,9 @@ def feature_check():
 def another_new_endpoint():
     print("Another new endpoint reached!")
     return {"message": "You have reached another new endpoint"} 
+
+# Noww added by Dhawala branch ====================================
+@app.get("/devops-feature")
+def devops_feature():
+    print("DevOps feature endpoint reached!")
+    return {"message": "This is a DevOps feature endpoint"}
