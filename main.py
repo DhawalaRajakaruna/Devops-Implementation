@@ -127,11 +127,8 @@ def another_endpoint():
     print("Another endpoint reached!")
     return {"message": "You have reached another endpoint"}
 
-
-@app.get("/Dhawala Sanka Rajakaruna edited now")
-def dhawala_function():
-    print("Dhawala Sanka rajakaruna ")
-    return {"message": "Dhawala Sanka rajakaruna "}
-@app.get("/Login")
-def login():
-    return {"message": "Login endpoint"}
+# This made in Dhawal branch
+@app.get("/conflict-endpoint")
+def conflict_endpoint():
+    print("This is to create a merge conflict")
+    return {"message": "Merge conflict endpoint"}
