@@ -214,10 +214,12 @@ def another_new_endpoint():
 @app.get("/devops-feature")
 def devops_feature():
     print("DevOps feature endpoint reached!")
+    print("jusdt jhhbk",0)
     return {"message": "This is a DevOps feature endpoint"}
 
-# This is added by Sanka =========================================
 @app.get("/devops-check")
 def devops_check():
-    print("DevOps check endpoint reached!")
-    return {"message": "This is a DevOps check endpoint"}
+    print("This endpoint is to check DevOps integration")
+    print("For new ..........................000258121")
+    return {"message": "DevOps integration check endpoint"}
+
