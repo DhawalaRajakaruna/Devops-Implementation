@@ -199,3 +199,7 @@ def conflict_check():
 def feature_for_practice():
     print("Feature for practice endpoint")
     return {"message": "This is a feature for practice"}    
+@app.get("/feature-check")
+def feature_check():
+    print("This endpoint is to check feature branch")
+    return {"message": "Feature branch check endpoint"} 
